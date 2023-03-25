@@ -98,7 +98,7 @@ let airQuality = parseInt(document.getElementById("AirQualityValue").textContent
 
 
 // Temperature and air quality limits
-const temperatureLimit = 30;
+const temperatureLimit = 20;
 const airQualityLimit = 500;
 
 // Audio elements
