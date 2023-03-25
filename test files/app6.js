@@ -102,6 +102,7 @@ var tempValueElement = document.getElementById("TemperatureValue");
 
 // get the current temperature value
 // var currentTempValue = tempValueElement.innerHTML;
+var currentTempValue = tempValueElement.getAttribute("span");
 
 
 // Temperature and air quality limits
@@ -118,7 +119,7 @@ setInterval(() => {
   // For example, using AJAX or fetch
 
   // Check if temperature or air quality exceeds the limit
-  if (tempValueElement > temperatureLimit) {
+  if (currentTempValue > temperatureLimit) {
     // Show temperature warning popup
     showPopup("Temperature Warning", "The temperature has exceeded the limit.", temperatureWarningAudio);
   } else if (airQuality > airQualityLimit) {
