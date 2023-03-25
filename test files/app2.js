@@ -93,7 +93,7 @@ const popupMessage = document.getElementById("popup-message");
 const popupClose = document.getElementById("popup-close");
 
 // Temperature and air quality values
-let temperature = parseInt(document.getElementById("TemperatureValue").innerText);
+let temperature = parseInt(document.getElementById("TemperatureValue").innerHTML);
 let airQuality = parseInt(document.getElementById("AirQualityValue").textContent);
 
 
