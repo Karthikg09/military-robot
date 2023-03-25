@@ -92,6 +92,7 @@ const popupTitle = document.getElementById("popup-title");
 const popupMessage = document.getElementById("popup-message");
 const popupClose = document.getElementById("popup-close");
 
+window.onload = function() {
 // Temperature and air quality values
 // let temperature = parseInt(document.getElementById("TemperatureValue").innerHTML);
 let airQuality = parseInt(document.getElementById("AirQualityValue").textContent);
@@ -101,7 +102,8 @@ var tempValueElement = document.getElementById("TemperatureValue");
 
 // get the current temperature value
 var currentTempValue = tempValueElement.innerHTML;
-
+console.log(currentTempValue);
+}
 
 
 // Temperature and air quality limits
