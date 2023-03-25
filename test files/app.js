@@ -84,8 +84,8 @@ xhttp.send();
   }
 
 
-
   
+
     // Popup elements
 const popup = document.getElementById("popup");
 const popupTitle = document.getElementById("popup-title");
@@ -102,7 +102,7 @@ const temperatureLimit = 30;
 const airQualityLimit = 500;
 
 // Audio elements
-const temperatureWarningAudio = new Audio("warning.mp3");
+const temperatureWarningAudio = new Audio("https://cdn.jsdelivr.net/gh/Karthikg09/military-robot@main/test%20files/warning.mp3");
 const airQualityWarningAudio = new Audio("air-quality-warning.mp3");
 
 // Check temperature and air quality values every second
