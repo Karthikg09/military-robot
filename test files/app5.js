@@ -92,7 +92,7 @@ const popupTitle = document.getElementById("popup-title");
 const popupMessage = document.getElementById("popup-message");
 const popupClose = document.getElementById("popup-close");
 
-window.onload = function() {
+
 // Temperature and air quality values
 // let temperature = parseInt(document.getElementById("TemperatureValue").innerHTML);
 let airQuality = parseInt(document.getElementById("AirQualityValue").textContent);
@@ -101,9 +101,7 @@ let airQuality = parseInt(document.getElementById("AirQualityValue").textContent
 var tempValueElement = document.getElementById("TemperatureValue");
 
 // get the current temperature value
-var currentTempValue = tempValueElement.innerHTML;
-console.log(currentTempValue);
-}
+// var currentTempValue = tempValueElement.innerHTML;
 
 
 // Temperature and air quality limits
@@ -120,7 +118,7 @@ setInterval(() => {
   // For example, using AJAX or fetch
 
   // Check if temperature or air quality exceeds the limit
-  if (currentTempValue > temperatureLimit) {
+  if (tempValueElement > temperatureLimit) {
     // Show temperature warning popup
     showPopup("Temperature Warning", "The temperature has exceeded the limit.", temperatureWarningAudio);
   } else if (airQuality > airQualityLimit) {
