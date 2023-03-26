@@ -10,7 +10,7 @@
 #include "DHT.h"  //--> Include the DHT Sensor Library 
 #define DHTTYPE DHT11 //--> Defines the type of DHT sensor used (DHT11, DHT21, and DHT22), in this project the sensor used is DHT11.
 
-#include "PageIndex.h" //--> Include the contents of the User Interface Web page, stored in the same folder as the .ino file
+#include "index.h" //--> Include the contents of the User Interface Web page, stored in the same folder as the .ino file
 
 #define LEDonBoard 2  //--> Defining an On Board LED, used for indicators when the process of connecting to a wifi router
 #define ServoPort1 D3   //--> connect to pin D3
