@@ -12,9 +12,9 @@ const char MAIN_page[] PROGMEM = R"=====(
 </head>
 <body>
     <section>
-        <img src="https://cdn.jsdelivr.net/gh/Karthikg09/military-robot@main/sensorCode/background.png" alt="" class="background">
-        <img src="https://cdn.jsdelivr.net/gh/Karthikg09/military-robot@main/sensorCode/army.png" alt="" class="army">
-        <img src="https://cdn.jsdelivr.net/gh/Karthikg09/military-robot@main/sensorCode/foreground.png" alt="" class="foreground">
+        <img src="https://cdn.jsdelivr.net/gh/Karthikg09/military-robot@main/sensorCode/background.png" alt="" class="bg">
+        <img src="https://cdn.jsdelivr.net/gh/Karthikg09/military-robot@main/sensorCode/army.png" alt="" class="tank">
+        <img src="https://cdn.jsdelivr.net/gh/Karthikg09/military-robot@main/sensorCode/foreground.png" alt="" class="fg">
         <div class="login">
             <h1>Robot Control Room </h1>
             <div class="inputBox">
