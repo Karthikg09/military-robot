@@ -27,6 +27,7 @@ ESP8266WebServer server(80);  //--> Server on port 80
 
 const int DHTPin = 5; //--> The pin used for the DHT11 sensor is Pin D1=Pin 5
 DHT dht(DHTPin, DHTTYPE); //--> Initialize DHT sensor, DHT dht(Pin_used, Type_of_DHT_Sensor);
+const int PIRPin = 2; //--> The pin used for the PIR sensor is Pin D4 = Pin 5
 Servo myservo1;  //--> create servo object to control a servo
 Servo myservo2;  //--> create servo object to control a servo
 
@@ -100,6 +101,21 @@ void handleMQ135Gas() {
   Serial.print(" ohms || ");
 }
 
+//----------------------------------------Procedure for reading the PIR sensor value
+void handlePIRSensor() {
+  int pirValue = digitalRead(PIRPin); //--> Read the PIR sensor value
+  String pirStatus = "";
+  if (pirValue == HIGH) { //--> Check the PIR sensor value and send the status to the client
+    pirStatus = "Motion Detected";
+  } else {
+    pirStatus = "No Motion";
+  }
+  server.send(200, "text/plane", pirStatus); //--> Send the PIR sensor status to the client
+  
+  Serial.print("PIR Sensor : ");
+  Serial.println(pirStatus);
+}
+
 
 
 //----------------------------------------
@@ -118,6 +134,7 @@ void setup(void){
     
   pinMode(LEDonBoard,OUTPUT); //--> On Board LED port Direction output
   digitalWrite(LEDonBoard, HIGH); //--> Turn off Led On Board
+  pinMode(PIRPin, INPUT); //--> Set the PIR sensor pin as input
   
   //----------------------------------------Wait for connection
   Serial.print("Connecting");
@@ -144,6 +161,7 @@ void setup(void){
   server.on("/readHumidity", handleDHT11Humidity);  //--> Routine to handle the call procedure handleDHT11Humidity
   server.on("/setPOS",handleServo); //--> Sets servo position from Web request
   server.on("/readGas", handleMQ135Gas); //--> Sets gas from Web request
+  server.on("/readPIR", handlePIRSensor);  //--> Routine to handle the call procedure handlePIRSensor
 
   server.begin(); //--> Start server
   Serial.println("HTTP server started");
