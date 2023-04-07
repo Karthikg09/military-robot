@@ -3,6 +3,7 @@ setInterval(function() {
     getTemperatureData();
     getHumidityData();
     getAirQualityData();
+    getMotionData();
   }, 2000); 
   
   setInterval(function() {
@@ -60,7 +61,7 @@ setInterval(function() {
             }
         }
     };
-    xhttp.open("GET", "/readPIR", true);
+    xhttp.open("GET", "readPIR", true);
     xhttp.send();
   }
 
