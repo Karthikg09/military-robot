@@ -46,6 +46,27 @@ setInterval(function() {
     xhttp.send();
   }
 
+  // pir starts here 
+  function getMotionData() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var motionValue = this.responseText;
+            document.getElementById("MotionValue").innerHTML = motionValue;
+            if (motionValue == "Yes") {
+                document.getElementById("Alert").style.display = "block";
+            } else {
+                document.getElementById("Alert").style.display = "none";
+            }
+        }
+    };
+    xhttp.open("GET", "/readPIR", true);
+    xhttp.send();
+  }
+
+  // pir ends here 
+
+
   function sendData(pos1, pos2) {
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
