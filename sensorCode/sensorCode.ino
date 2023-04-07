@@ -27,7 +27,7 @@ ESP8266WebServer server(80);  //--> Server on port 80
 
 const int DHTPin = 5; //--> The pin used for the DHT11 sensor is Pin D1=Pin 5
 DHT dht(DHTPin, DHTTYPE); //--> Initialize DHT sensor, DHT dht(Pin_used, Type_of_DHT_Sensor);
-const int PIRPin = 2; //--> The pin used for the PIR sensor is Pin D4 = Pin 5
+const int PIRPin = 12; //--> The pin used for the PIR sensor is Pin D6 = Pin 12
 Servo myservo1;  //--> create servo object to control a servo
 Servo myservo2;  //--> create servo object to control a servo
 
@@ -106,9 +106,9 @@ void handlePIRSensor() {
   int pirValue = digitalRead(PIRPin); //--> Read the PIR sensor value
   String pirStatus = "";
   if (pirValue == HIGH) { //--> Check the PIR sensor value and send the status to the client
-    pirStatus = "Motion Detected";
+    pirStatus = "Yes";
   } else {
-    pirStatus = "No Motion";
+    pirStatus = "No";
   }
   server.send(200, "text/plane", pirStatus); //--> Send the PIR sensor status to the client
   
@@ -126,6 +126,7 @@ void setup(void){
   dht.begin();  //--> Start reading DHT11 sensors
   myservo1.attach(ServoPort1); //--> attaches the servo on D1 to the servo object
   myservo2.attach(ServoPort2); //--> attaches the servo on D1 to the servo object
+  pinMode(PIRPin, INPUT); //--> Set the PIR sensor pin as input
   // mq135.begin();
   delay(500);
   
@@ -134,7 +135,6 @@ void setup(void){
     
   pinMode(LEDonBoard,OUTPUT); //--> On Board LED port Direction output
   digitalWrite(LEDonBoard, HIGH); //--> Turn off Led On Board
-  pinMode(PIRPin, INPUT); //--> Set the PIR sensor pin as input
   
   //----------------------------------------Wait for connection
   Serial.print("Connecting");

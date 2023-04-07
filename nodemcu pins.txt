@@ -1,0 +1,16 @@
+I apologize for misunderstanding your question earlier. To answer your updated question, the pin labeled as "D4" on the NodeMCU board corresponds to GPIO2 (or alternatively labeled as pin 2) in the NodeMCU firmware.
+
+Here's a summary of the commonly used GPIO pins on the NodeMCU board and their corresponding D- (digital) pin labels:
+
+D0 (GPIO16)
+D1 (GPIO5)
+D2 (GPIO4)
+D3 (GPIO0)
+D4 (GPIO2)
+D5 (GPIO14)
+D6 (GPIO12)
+D7 (GPIO13)
+D8 (GPIO15)
+D9 (GPIO3)
+D10 (GPIO1)
+Note that some of the GPIO pins have alternative functions (such as boot configuration or special purposes), so you should always check the NodeMCU documentation to make sure you're using the correct pins for your project.
