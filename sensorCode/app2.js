@@ -56,6 +56,7 @@ setInterval(function() {
             document.getElementById("MotionValue").innerHTML = motionValue;
             if (motionValue == "Yes") {
                 document.getElementById("Alert").style.display = "block";
+                document.getElementById("alert-sound").play(); // Play the sound
             } else {
                 document.getElementById("Alert").style.display = "none";
             }
