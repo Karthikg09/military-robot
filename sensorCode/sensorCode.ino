@@ -13,10 +13,11 @@
 #include "index.h" //--> Include the contents of the User Interface Web page, stored in the same folder as the .ino file
 
 #define LEDonBoard 2  //--> Defining an On Board LED, used for indicators when the process of connecting to a wifi router
-#define ServoPort1 D3   //--> connect to pin D3
-#define ServoPort2 D5   //--> connect to pin D3
+#define ServoPort1 D3   //--> connect to pin D3  Aim
+#define ServoPort2 D2   //--> connect to pin D3  Pan
 const int MQ135Pin = A0; // MQ135 sensor pin is connected to Analog pin A0
 MQ135 mq135(MQ135Pin);
+#define LED D5          //--> Connect to D5= laser
 
 //----------------------------------------SSID and Password of your WiFi router
 const char* ssid = "realme 9";
@@ -27,7 +28,7 @@ ESP8266WebServer server(80);  //--> Server on port 80
 
 const int DHTPin = 5; //--> The pin used for the DHT11 sensor is Pin D1=Pin 5
 DHT dht(DHTPin, DHTTYPE); //--> Initialize DHT sensor, DHT dht(Pin_used, Type_of_DHT_Sensor);
-const int PIRPin = 12; //--> The pin used for the PIR sensor is Pin D6 = Pin 12
+const int PIRPin = 2; //--> The pin used for the PIR sensor is Pin D4 = Pin 2
 Servo myservo1;  //--> create servo object to control a servo
 Servo myservo2;  //--> create servo object to control a servo
 
@@ -116,6 +117,22 @@ void handlePIRSensor() {
   Serial.println(pirStatus);
 }
 
+// ------------------------Laser code
+
+void led_control() {
+ String state = "OFF";
+ String act_state = server.arg("state");
+ if(act_state == "1") {
+  digitalWrite(LED,HIGH); //LED ON
+  state = "ON";
+ }
+ else {
+  digitalWrite(LED,LOW); //LED OFF
+  state = "OFF";
+ }
+ server.send(200, "text/plane", state);
+}
+
 
 
 //----------------------------------------
@@ -127,6 +144,7 @@ void setup(void){
   myservo1.attach(ServoPort1); //--> attaches the servo on D1 to the servo object
   myservo2.attach(ServoPort2); //--> attaches the servo on D1 to the servo object
   pinMode(PIRPin, INPUT); //--> Set the PIR sensor pin as input
+  pinMode(LED,OUTPUT);    //--> led status
   // mq135.begin();
   delay(500);
   
@@ -135,6 +153,7 @@ void setup(void){
     
   pinMode(LEDonBoard,OUTPUT); //--> On Board LED port Direction output
   digitalWrite(LEDonBoard, HIGH); //--> Turn off Led On Board
+
   
   //----------------------------------------Wait for connection
   Serial.print("Connecting");
@@ -162,6 +181,7 @@ void setup(void){
   server.on("/setPOS",handleServo); //--> Sets servo position from Web request
   server.on("/readGas", handleMQ135Gas); //--> Sets gas from Web request
   server.on("/readPIR", handlePIRSensor);  //--> Routine to handle the call procedure handlePIRSensor
+  server.on("/led_set", led_control);  //--> Routine to handle the call of Laser
 
   server.begin(); //--> Start server
   Serial.println("HTTP server started");

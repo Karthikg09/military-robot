@@ -105,3 +105,16 @@ xhttp.send();
     const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
     document.getElementById("date").innerHTML = dayNames[d.getDay()] + ", " + d.getDate() + "-" + monthNames[d.getMonth()] + "-" + d.getFullYear();
   }
+
+// laser control
+
+document.getElementById("led-toggle").addEventListener("change", function() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("state").innerHTML = this.responseText;
+      }
+  };
+  xhttp.open("GET", "led_set?state=" + Number(this.checked), true);
+  xhttp.send();
+});
